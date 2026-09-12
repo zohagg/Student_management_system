@@ -20,7 +20,7 @@ gem "jbuilder"
 gem 'devise'
 gem 'pundit'
 gem 'view_component', '~> 3.2'
-gem 'image_processing', '~> 1.2' 
+gem 'image_processing', '~> 2.1' 
 
 # Gemfile
 
