@@ -1,0 +1,42 @@
+<div class="max-w-3xl mx-auto p-6 bg-white shadow rounded">
+  <h1 class="text-2xl font-bold mb-4">Student Dashboard</h1>
+
+  <div class="flex items-center space-x-6">
+    <div>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize_to_limit: [150, 150]), class: "rounded-full" %>
+      <% else %>
+        <div class="w-36 h-36 bg-gray-200 rounded-full flex items-center justify-center">
+          <span class="text-gray-500">No Photo</span>
+        </div>
+      <% end %>
+    </div>
+
+
+    
+
+    <div>
+     <p><strong>Name:</strong> <%= current_user.name %></p>
+<p><strong>Email:</strong> <%= current_user.email %></p>
+<p><strong>Roll Number:</strong> <%= current_user.roll_no %></p>
+<p><strong>Department:</strong> <%= current_user.department %></p>
+<p><strong>Date of Admission:</strong> <%= current_user.date_of_admission %></p>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded" %>
+    </div>
+
+ <h2 class="text-xl font-bold mt-6 mb-4">My Courses</h2>
+<ul class="space-y-2">
+  <% current_user.enrolled_courses.each do |course| %>
+    <li class="border p-3 rounded">
+      <!-- Make course name a link -->
+      <h3 class="font-semibold text-blue-600 hover:underline">
+        <%= link_to course.name, course_path(course) %>
+      </h3>
+      <p><%= course.description %></p>
+    </li>
+  <% end %>
+</ul>
+
+
+  </div>
+</div>

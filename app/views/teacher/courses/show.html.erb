@@ -1,0 +1,70 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-gray-800"><%= @course.name %></h1>
+  <p class="text-gray-600 mb-4"><%= @course.description %></p>
+
+  <div class="grid grid-cols-2 gap-8">
+    <!-- Assignments Section -->
+  <div>
+      <h2 class="text-xl font-semibold mb-2">Assignments</h2>
+      <%= link_to "New Assignment", new_teacher_course_assignment_path(@course), class: "text-blue-600 hover:underline" %>
+
+      <ul class="mt-4">
+        <% @assignments.each do |assignment| %>
+          <li class="border p-3 rounded mb-2">
+            <strong><%= assignment.title %></strong>
+            <p><%= assignment.description %></p>
+
+            <div class="flex space-x-3 mt-2">
+             
+              <%= link_to "View",
+                  teacher_course_assignment_path(@course, assignment),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: "text-red-600 hover:underline" %>
+            </div>
+
+
+            <% if assignment.files.attached? %>
+              <p class="mt-2 font-semibold"> Attached Files:</p>
+              <ul>
+                <% assignment.files.each do |file| %>
+                  <li>
+                    <%= link_to file.filename.to_s, rails_blob_path(file, disposition: "attachment"), class: "text-blue-600 hover:underline" %>
+                  </li>
+
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <!-- Notes Section -->
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Notes</h2>
+      <%= link_to "New Note", new_teacher_course_note_path(@course), class: "text-blue-600 hover:underline" %>
+      
+      <ul class="mt-4">
+        <% @notes.each do |note| %>
+          <li class="border p-3 rounded mb-2">
+            <strong><%= note.title %></strong>
+            <p><%= note.content %></p>
+
+              <div class="flex space-x-3 mt-2">
+            <%= link_to "View ",
+    teacher_course_note_path(@course, note),
+    class: "text-green-600 hover:underline" %>
+
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="mb-4">
+  <%= link_to "My Courses", teacher_courses_path, class: "text-blue-600 hover:underline" %>
+</div>
+
+</div>

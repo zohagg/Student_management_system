@@ -1,0 +1,18 @@
+<h1 class="text-2xl font-bold mb-4">New Course</h1>
+
+<%= form_with model: [:teacher, @course], local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, class: "block font-medium" %>
+    <%= f.text_field :name, class: "border p-2 w-full" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :description, class: "block font-medium" %>
+    <%= f.text_area :description, class: "border p-2 w-full" %>
+  </div>
+  <%= f.submit "Create Course",  class: "block font-medium" %>
+
+  <div class="mb-4">
+  <%= link_to "My Courses", teacher_courses_path, class: "text-blue-600 hover:underline" %>
+</div>
+
+<% end %>

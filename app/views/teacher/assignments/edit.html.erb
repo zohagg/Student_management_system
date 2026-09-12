@@ -1,0 +1,33 @@
+<h1 class="text-2xl font-bold mb-4">Edit Assignment</h1>
+
+<%= form_with model: [:teacher, @course, @assignment], local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "border p-2 w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "border p-2 w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :files %><br>
+    <%= f.file_field :files, multiple: true, direct_upload: true, class: "mt-1" %>
+
+    <% if @assignment.files.attached? %>
+      <p class="mt-2 font-semibold">Attached Files:</p>
+      <ul>
+        <% @assignment.files.each do |file| %>
+          <li><%= file.filename %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <%= f.submit "Update Assignment", class: "border p-2 w-full" %>
+<% end %>
+
+<%= link_to "Back to Assignments",
+            teacher_course_assignments_path(@course),
+            class: "text-blue-600 hover:underline mt-4 inline-block" %>

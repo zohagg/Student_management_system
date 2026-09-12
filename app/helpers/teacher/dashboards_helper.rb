@@ -1,0 +1,2 @@
+module Teacher::DashboardsHelper
+end

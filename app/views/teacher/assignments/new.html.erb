@@ -1,0 +1,19 @@
+<h2 class="text-xl font-semibold mb-4">New Assignment</h2>
+<%= form_with(model: [:teacher, @course, @assignment], local: true, html: { multipart: true }) do |form| %>
+  <div class="mb-4">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "border p-2 rounded w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "border p-2 rounded w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :files, "Upload Files" %>
+    <%= form.file_field :files, multiple: true, class: "border p-2 rounded w-full" %>
+  </div>
+
+  <%= form.submit "Create", class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>

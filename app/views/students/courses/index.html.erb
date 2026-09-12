@@ -1,0 +1,22 @@
+<h1 class="text-2xl font-bold mb-6">Available Courses</h1>
+
+<% if @courses.any? %>
+  <ul class="space-y-4">
+
+ 
+    <% @courses.each do |course| %>
+      <li class="p-4 border rounded flex justify-between items-center">
+        <div>
+          <h2 class="font-semibold text-blue-600"><%= course.name %></h2>
+          <p><%= course.description %></p>
+          <p class="text-gray-500">Teacher: <%= course.teacher.email %></p>
+        </div>
+        <div>
+          <%= button_to "Register", students_register_course_path(course), method: :post, class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="text-gray-600">No courses available to register.</p>
+<% end %>

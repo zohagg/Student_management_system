@@ -1,0 +1,26 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-gray-800"><%= @note.title %></h1>
+  <p class="text-gray-600 mb-4"><%= @note.content %></p>
+
+  <%# If you later add files to notes, uncomment this %>
+  <%# if @note.files.attached? %>
+  <%#   <h3 class="text-lg font-semibold mt-4">Attached Files:</h3> %>
+  <%#   <ul class="mt-2"> %>
+  <%#     <% @note.files.each do |file| %> %>
+  <%#       <li class="mb-1"> %>
+  <%#         <%= link_to file.filename.to_s, rails_blob_path(file, disposition: "attachment"), class: "text-blue-600 hover:underline" %> %>
+  <%#       </li> %>
+  <%#     <% end %> %>
+  <%#   </ul> %>
+  <%# end %>
+
+  <div class="flex space-x-4 mt-6">
+    <%= link_to "Edit", edit_teacher_course_note_path(@course, @note), class: "text-yellow-600 hover:underline" %>
+
+    <%= form_with url: teacher_course_note_path(@course, @note), method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+      <%= submit_tag "Delete", class: "text-red-600 hover:underline bg-transparent border-0 cursor-pointer" %>
+    <% end %>
+
+    <%= link_to "Back", teacher_course_path(@course), class: "text-blue-600 hover:underline" %>
+  </div>
+</div>

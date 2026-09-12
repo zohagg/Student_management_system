@@ -1,0 +1,40 @@
+<nav class="bg-gray-800 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="<%= root_path %>" class="text-xl font-bold">Assessment System</a>
+      </div>
+      <div class="hidden md:flex space-x-4">
+        <% if helpers.user_signed_in? %>
+                
+  <% if helpers.current_user.student? %>
+    <a href="<%= students_dashboard_path %>" class="hover:bg-gray-700 px-3 py-2 rounded">Dashboard</a>
+    <%= link_to "Available Courses", students_courses_path, class: "hover:bg-gray-700 px-3 py-2 rounded" %>
+ 
+
+          <% elsif helpers.current_user.teacher? %>
+            <a href="<%= teacher_courses_path %>" class="hover:bg-gray-700 px-3 py-2 rounded">My Courses</a>
+
+          <% elsif helpers.current_user.recruiter? %>
+            <a href="<%= recruiter_dashboard_path %>" class="hover:bg-gray-700 px-3 py-2 rounded">Dashboard</a>
+          <% end %>
+
+
+
+          
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "hover:bg-gray-700 px-3 py-2 rounded" %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "hover:bg-gray-700 px-3 py-2 rounded" %>
+
+
+
+
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "hover:bg-gray-700 px-3 py-2 rounded" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "hover:bg-gray-700 px-3 py-2 rounded" %>
+        <% end %>
+      </div>
+
+    
+
+ 
+</nav>

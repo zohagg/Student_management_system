@@ -1,0 +1,23 @@
+<h1 class="text-2xl font-bold mb-4">Assignments</h1>
+
+<%= link_to "New Assignment", new_teacher_course_assignment_path(@course), class: "text-blue-600 hover:underline" %>
+
+<ul class="mt-4">
+  <% @assignments.each do |assignment| %>
+    <li class="border p-3 rounded mb-2">
+      <strong><%= assignment.title %></strong>
+      <p><%= assignment.description %></p>
+
+      <% if assignment.files.attached? %>
+        <p class="mt-2 font-semibold">Attached Files:</p>
+        <ul>
+          <% assignment.files.each do |file| %>
+            <li>
+              <%= link_to file.filename.to_s, rails_blob_path(file, disposition: "attachment"), class: "text-blue-600 hover:underline" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

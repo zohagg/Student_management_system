@@ -1,0 +1,16 @@
+<h1 class="text-2xl font-bold mb-6">Pending Enrollments</h1>
+
+<ul class="space-y-4">
+  <% @pending_enrollments.each do |enrollment| %>
+    <li class="p-4 border rounded flex justify-between items-center">
+      <div>
+        <p><strong>Student:</strong> <%= enrollment.student.email %></p>
+        <p><strong>Course:</strong> <%= enrollment.course.name %></p>
+      </div>
+      <div class="space-x-2">
+        <%= link_to "Approve", approve_teachers_enrollment_path(enrollment), method: :patch, class: "bg-green-600 text-white px-3 py-1 rounded" %>
+        <%= link_to "Reject", reject_teachers_enrollment_path(enrollment), method: :patch, class: "bg-red-600 text-white px-3 py-1 rounded" %>
+      </div>
+    </li>
+  <% end %>
+</ul>
